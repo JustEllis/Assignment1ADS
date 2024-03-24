@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class memberDataFile {
+public class MemberDataFile {
     int memberN;
     public void saveMember(Member member) {
         memberN = member.getMemberN();

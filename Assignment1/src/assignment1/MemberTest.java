@@ -1,8 +1,8 @@
 package assignment1;
 
-public class memberTest {
+public class MemberTest {
     public static void main(String[] args) {
-        memberDataFile memberDataFile = new memberDataFile();
+        MemberDataFile memberDataFile = new MemberDataFile();
 
         // Creating two book objects
         Member member1 = new Member(1, "Ellis", "Floriani", "10 streety street", "0406090406");

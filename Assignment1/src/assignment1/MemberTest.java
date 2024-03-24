@@ -1,6 +1,6 @@
 package assignment1;
 
-public class BookTest {
+public class MemberTest {
     public static void main(String[] args) {
         BookDataFile bookDataFile = new BookDataFile();
 

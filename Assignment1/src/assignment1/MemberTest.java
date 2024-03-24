@@ -1,13 +1,12 @@
 package assignment1;
 
-public class MemberTest {
+public class memberTest {
     public static void main(String[] args) {
-        MemberDataFile memberDataFile = new MemberDataFile();
+        memberDataFile memberDataFile = new memberDataFile();
 
         // Creating two book objects
-        Member member1 = new Member(1, "Ellis", "Floriani", "10 streety street", 0406090406);
-        Member member2 = new Member("Firewalls and Network Security", "Greg Holden", "Thomson Course Technology", 2005,
-                "0-619-13039-3");
+        Member member1 = new Member(1, "Ellis", "Floriani", "10 streety street", "0406090406");
+        Member member2 = new Member(2, "Liam", "Walton", "Beach Street", "0200129050");
 
         // Saving books to the file
         memberDataFile.saveMember(member1);

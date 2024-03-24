@@ -1,0 +1,6 @@
+Member Number:2
+First Name: Liam
+Last Name: Walton
+Address: Beach Street
+Phone: 0200129050
+

@@ -11,11 +11,11 @@ public class Member implements Serializable {
     private String firstName;
     private String lastName;
     private String address;
-    private int phoneN;
+    private String phoneN;
     
 
     // Constructor
-    public Member(int memberN, String firstName, String lastName, String address, int phoneN) {
+    public Member(int memberN, String firstName, String lastName, String address, String phoneN) {
         this.memberN = memberN;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -56,11 +56,11 @@ public class Member implements Serializable {
         this.address = address;
     }
 
-    public int getPhoneN() {
+    public String getPhoneN() {
         return phoneN;
     }
 
-    public void setPhoneN(int phoneN) {
+    public void setPhoneN(String phoneN) {
         this.phoneN = phoneN;
     }
 

@@ -10,8 +10,8 @@ public class MemberDataFile {
     int memberN;
     public void saveMember(Member member) {
         memberN = member.getMemberN();
-        try (BufferedWriter bookData = new BufferedWriter(new FileWriter("Member"+memberN+".txt", true))) {
-            bookData.write("Member Number:" + member.getMemberN() + "\nFirst Name: " + member.getFirstName() +
+        try (BufferedWriter memberData = new BufferedWriter(new FileWriter("Member"+memberN+".txt", true))) {
+            memberData.write("Member Number:" + member.getMemberN() + "\nFirst Name: " + member.getFirstName() +
                     "\nLast Name: " + member.getLastName() + "\nAddress: " + member.getAddress() +
                     "\nPhone: " + member.getPhoneN() + "\n\n");
         } catch (IOException e) {

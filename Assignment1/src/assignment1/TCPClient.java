@@ -9,11 +9,10 @@ public class TCPClient {
 		Socket s = null;
                 MemberDataFile memberDataFile = new MemberDataFile();
 		try{
-                        
 			int serverPort = 8888;
 
 			s = new Socket("localhost", serverPort);
-
+                        
 			ObjectInputStream in = null;
 			ObjectOutputStream out =null;
 
@@ -34,6 +33,7 @@ public class TCPClient {
                         
                         Member member = new Member(memberN,firstName,lastName,address,phoneN);
 			memberDataFile.saveMember(member);
+                        out.writeObject(member);
                         //write object ot the server
 			//out.writeObject(memberList.txt);
                         //memberDataFile.saveMember();
@@ -41,18 +41,33 @@ public class TCPClient {
 			//read object sent by the server
 			
 
-			System.out.println("Membership Details:");
+			System.out.println("The Sent Gym Member Data:");
 			System.out.println("====================================");
-			System.out.println(memberN + firstName + lastName);
-
+			System.out.println("Member number: " + member.getMemberN());
+			System.out.println("First name: " + member.getFirstName());
+			System.out.println("last name: " + member.getLastName());
+			System.out.println("Address: " + member.getAddress());	
+                        System.out.println("Phone number: " + member.getPhoneN());
+			System.out.println();
+                        member = (Member)in.readObject();
+                        /*	    
+			System.out.println("The Received Gym Member Data");
+			System.out.println("====================================");
+			System.out.println("Member number: " + member1.getMemberN());
+			System.out.println("First name: " + member1.getFirstName());
+			System.out.println("last name: " + member1.getLastName());
+			System.out.println("Address: " + member1.getAddress());	
+                        System.out.println("Phone number: " + member1.getPhoneN());
+			System.out.println();
+                        */
+                    
 		}catch (UnknownHostException e){System.out.println("Socket:"+e.getMessage());
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		}catch (IOException e){System.out.println("readline:"+e.getMessage());
+                }catch(ClassNotFoundException ex){
+					 ex.printStackTrace();
 		}finally {if(s!=null) try {s.close();}catch (IOException e){System.out.println("close:"+e.getMessage());}}
-     
-        
-        
-        
+      
         }
 
 }

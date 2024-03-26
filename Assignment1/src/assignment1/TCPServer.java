@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package assignment1;
 
-/**
- *
- * @author Mary
- */
 import java.net.*;
 import java.io.*;
 
@@ -27,6 +18,7 @@ public class TCPServer {
 		} catch(IOException e) {System.out.println("Listen socket:"+e.getMessage());}
 	}
 }
+
 class Connection extends Thread {
 
 	ObjectInputStream in;
@@ -45,13 +37,38 @@ class Connection extends Thread {
 
 	public void run(){
 
-            System.out.println("Sent book with cost computed");
-            System.out.println("");
-            try {clientSocket.close();}catch (IOException e){/*close failed*/}
+		try {
 
+			Member member = (Member)in.readObject();	
+			
+			System.out.println("The Recevied Gym Member Data:");
+			System.out.println("====================================");
+			System.out.println("Member number: " + member.getMemberN());
+			System.out.println("First name: " + member.getFirstName());
+			System.out.println("last name: " + member.getLastName());
+			System.out.println("Address: " + member.getAddress());	
+                        System.out.println("Phone number: " + member.getPhoneN());
+			System.out.println();
+                        //reads txt file to print to server
+                        BufferedReader br = new BufferedReader(new FileReader("memberList.txt"));
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                        System.out.println(line);
+                        }
+
+		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
+		} catch(IOException e) {System.out.println("readline:"+e.getMessage());
+		} catch(ClassNotFoundException ex){
+					 ex.printStackTrace();
+		}finally{ try {clientSocket.close();}catch (IOException e){/*close failed*/}}
 
 	}
 }
+
+			
+
+
+
 
 
 

@@ -1,0 +1,12 @@
+Member Number:1
+First Name: 
+Last Name: Ellis FLoriani
+Address: homies street
+Phone: 12345678
+
+Member Number:2
+First Name: 
+Last Name: big fella
+Address: too easy
+Phone: 12345678
+

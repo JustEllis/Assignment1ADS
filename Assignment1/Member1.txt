@@ -1,6 +1,0 @@
-Member Number:1
-First Name: Ellis
-Last Name: Floriani
-Address: 10 streety street
-Phone: 0406090406
-

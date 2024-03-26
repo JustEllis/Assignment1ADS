@@ -10,7 +10,7 @@ public class MemberDataFile {
     int memberN;
     public void saveMember(Member member) {
         memberN = member.getMemberN();
-        try (BufferedWriter memberData = new BufferedWriter(new FileWriter("Member"+memberN+".txt", true))) {
+        try (BufferedWriter memberData = new BufferedWriter(new FileWriter("memberList.txt", true))) {
             memberData.write("Member Number:" + member.getMemberN() + "\nFirst Name: " + member.getFirstName() +
                     "\nLast Name: " + member.getLastName() + "\nAddress: " + member.getAddress() +
                     "\nPhone: " + member.getPhoneN() + "\n\n");
@@ -20,7 +20,7 @@ public class MemberDataFile {
     }
 
     public void displayMembers() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("Member"+memberN+".txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("memberList.txt"))) {
             System.out.println("No more records...\n");
 
             String line;

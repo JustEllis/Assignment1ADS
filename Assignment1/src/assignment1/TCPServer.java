@@ -5,14 +5,15 @@ import java.io.*;
 
 public class TCPServer {
 	public static void main (String args[]) {
-
 		try{
-			int serverPort = 8888;
+			int serverPort = 1101;
 			ServerSocket listenSocket = new ServerSocket(serverPort);
             System.out.println("TCP Server running...");
 			while(true) {
 				Socket clientSocket = listenSocket.accept();
 				Connection c = new Connection(clientSocket);
+                                System.out.printf("Data Recieved",
+                                    listenSocket.getLocalPort(), clientSocket.getPort() );
 			}
 
 		} catch(IOException e) {System.out.println("Listen socket:"+e.getMessage());}
@@ -36,25 +37,25 @@ class Connection extends Thread {
 	}
 
 	public void run(){
-
+                MemberDataFile memberDataFile = new MemberDataFile();
 		try {
-
+                        
 			Member member = (Member)in.readObject();	
-			
+			/*
 			System.out.println("The Recevied Gym Member Data:");
 			System.out.println("====================================");
-			System.out.println("Member number: " + member.getMemberN());
-			System.out.println("First name: " + member.getFirstName());
-			System.out.println("last name: " + member.getLastName());
-			System.out.println("Address: " + member.getAddress());	
-                        System.out.println("Phone number: " + member.getPhoneN());
-			System.out.println();
                         //reads txt file to print to server
+                        
                         BufferedReader br = new BufferedReader(new FileReader("memberList.txt"));
                         String line;
                         while ((line = br.readLine()) != null) {
                         System.out.println(line);
                         }
+                        */
+                        memberDataFile.saveMember(member);
+                       //String data = in.readUTF();
+                        // System.out.println(data);
+                        //out.writeUTF("Info has been saved");
 
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		} catch(IOException e) {System.out.println("readline:"+e.getMessage());

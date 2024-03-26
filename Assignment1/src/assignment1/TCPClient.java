@@ -7,9 +7,9 @@ import java.util.*;
 public class TCPClient {
 	public static void main (String args[]) {
 		Socket s = null;
-                MemberDataFile memberDataFile = new MemberDataFile();
+                String message ="Saved";
 		try{
-			int serverPort = 8888;
+			int serverPort = 1101;
 
 			s = new Socket("localhost", serverPort);
                         
@@ -18,8 +18,9 @@ public class TCPClient {
 
 			out =new ObjectOutputStream(s.getOutputStream());
 			in = new ObjectInputStream( s.getInputStream());
-			Scanner sa=new Scanner(System.in);
-
+			
+                        Scanner sa=new Scanner(System.in);
+                         
 			System.out.println("Enter member number:");
 			int memberN=sa.nextInt();
 			System.out.println("Enter first name");
@@ -32,14 +33,13 @@ public class TCPClient {
 			String phoneN=sa.nextLine();
                         
                         Member member = new Member(memberN,firstName,lastName,address,phoneN);
-			memberDataFile.saveMember(member);
                         out.writeObject(member);
                         //write object ot the server
 			//out.writeObject(memberList.txt);
-                        //memberDataFile.saveMember();
-
+                     
 			//read object sent by the server
-			
+				      
+                        
 
 			System.out.println("The Sent Gym Member Data:");
 			System.out.println("====================================");
@@ -60,14 +60,14 @@ public class TCPClient {
                         System.out.println("Phone number: " + member1.getPhoneN());
 			System.out.println();
                         */
-                    
-		}catch (UnknownHostException e){System.out.println("Socket:"+e.getMessage());
+                        
+                }catch (UnknownHostException e){System.out.println("Socket:"+e.getMessage());
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		}catch (IOException e){System.out.println("readline:"+e.getMessage());
                 }catch(ClassNotFoundException ex){
 					 ex.printStackTrace();
 		}finally {if(s!=null) try {s.close();}catch (IOException e){System.out.println("close:"+e.getMessage());}}
-      
+                
         }
 
 }

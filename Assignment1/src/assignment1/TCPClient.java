@@ -3,13 +3,13 @@ package assignment1;
 import java.net.*;
 import java.io.*;
 import java.util.*;
-import static javafx.application.Platform.exit;
 
 public class TCPClient {
 	public static void main (String args[]) {
             boolean loop = true;
             int memberN = 0;
             Socket s = null;
+            int answer;
             while(loop == true){ 
 		try{
                         
@@ -27,7 +27,6 @@ public class TCPClient {
                         }
                             
 			System.out.println("member number:" + memberN);
-			
 			System.out.println("Enter first name");
 			String firstName=sa.nextLine();
                         System.out.println("Enter last name");
@@ -43,9 +42,8 @@ public class TCPClient {
 			//out.writeObject(memberList.txt);
                      
 			//read object sent by the server
-				      
-                        
-                        //member = (Member)in.readObject();
+			//member = (Member)in.readObject();	      
+                       
 			System.out.println("The Sent Gym Member Data:");
 			System.out.println("====================================");
 			System.out.println("Member number: " + member.getMemberN());
@@ -54,8 +52,7 @@ public class TCPClient {
 			System.out.println("Address: " + member.getAddress());	
                         System.out.println("Phone number: " + member.getPhoneN());
 			System.out.println();
-                        
-                        
+                                  
                         /*	    
 			System.out.println("The Received Gym Member Data");
 			System.out.println("====================================");
@@ -66,7 +63,17 @@ public class TCPClient {
                         System.out.println("Phone number: " + member1.getPhoneN());
 			System.out.println();
                         */
-                        
+                        System.out.println("Type 1 to make another entry \nType 2 to stop");
+			answer=sa.nextInt();
+                        //while((answer != 1) || (answer != 2)){
+                        if(answer == 1){
+                            loop = true;
+                        }else if (answer == 2){
+                            loop = false;
+                        }/*else if ((answer != 1) || (answer != 2)){
+                            System.out.println("type 1 or 2");
+                        }
+                        }*/
                 }catch (UnknownHostException e){System.out.println("Socket:"+e.getMessage());
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		}catch (IOException e){System.out.println("readline:"+e.getMessage());
@@ -74,6 +81,6 @@ public class TCPClient {
 		//			 ex.printStackTrace();
 		}finally {if(s!=null) try {s.close();}catch (IOException e){System.out.println("close:"+e.getMessage());}}
                 
+            }
         }
-    }
 }

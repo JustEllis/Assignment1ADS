@@ -3,26 +3,31 @@ package assignment1;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import static javafx.application.Platform.exit;
 
 public class TCPClient {
 	public static void main (String args[]) {
-		Socket s = null;
-                String message ="Saved";
+            boolean loop = true;
+            int memberN = 0;
+            Socket s = null;
+            while(loop == true){ 
 		try{
+                        
 			int serverPort = 1101;
 
 			s = new Socket("localhost", serverPort);
-                        
-			ObjectInputStream in = null;
-			ObjectOutputStream out =null;
-
-			out =new ObjectOutputStream(s.getOutputStream());
-			in = new ObjectInputStream( s.getInputStream());
+                        			
+			ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream( s.getInputStream());
 			
                         Scanner sa=new Scanner(System.in);
-                         
-			System.out.println("Enter member number:");
-			int memberN=sa.nextInt();
+                        
+                        if(memberN == memberN){
+                            memberN++;
+                        }
+                            
+			System.out.println("member number:" + memberN);
+			
 			System.out.println("Enter first name");
 			String firstName=sa.nextLine();
                         System.out.println("Enter last name");
@@ -40,7 +45,7 @@ public class TCPClient {
 			//read object sent by the server
 				      
                         
-
+                        //member = (Member)in.readObject();
 			System.out.println("The Sent Gym Member Data:");
 			System.out.println("====================================");
 			System.out.println("Member number: " + member.getMemberN());
@@ -49,7 +54,8 @@ public class TCPClient {
 			System.out.println("Address: " + member.getAddress());	
                         System.out.println("Phone number: " + member.getPhoneN());
 			System.out.println();
-                        member = (Member)in.readObject();
+                        
+                        
                         /*	    
 			System.out.println("The Received Gym Member Data");
 			System.out.println("====================================");
@@ -64,10 +70,10 @@ public class TCPClient {
                 }catch (UnknownHostException e){System.out.println("Socket:"+e.getMessage());
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		}catch (IOException e){System.out.println("readline:"+e.getMessage());
-                }catch(ClassNotFoundException ex){
-					 ex.printStackTrace();
+                //}catch(ClassNotFoundException ex){
+		//			 ex.printStackTrace();
 		}finally {if(s!=null) try {s.close();}catch (IOException e){System.out.println("close:"+e.getMessage());}}
                 
         }
-
+    }
 }

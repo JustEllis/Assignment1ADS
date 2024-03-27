@@ -12,8 +12,8 @@ public class TCPServer {
 			while(true) {
 				Socket clientSocket = listenSocket.accept();
 				Connection c = new Connection(clientSocket);
-                                System.out.printf("Data Recieved",
-                                    listenSocket.getLocalPort(), clientSocket.getPort() );
+                                //System.out.printf("Data Recieved",
+                                //   listenSocket.getLocalPort(), clientSocket.getPort() );
 			}
 
 		} catch(IOException e) {System.out.println("Listen socket:"+e.getMessage());}
@@ -52,6 +52,7 @@ class Connection extends Thread {
                         System.out.println(line);
                         }
                         */
+                        System.out.println("Receving data from client: "+member.getMemberN());
                         memberDataFile.saveMember(member);
                        //String data = in.readUTF();
                         // System.out.println(data);

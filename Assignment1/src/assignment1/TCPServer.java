@@ -1,5 +1,6 @@
 package assignment1;
 
+
 import java.net.*;
 import java.io.*;
 import java.lang.reflect.Array;
@@ -61,11 +62,12 @@ class Connection extends Thread {
         
 	public void run(){
                 MemberDataFile memberDataFile = new MemberDataFile();
-                String filename = "memberObject";
+                String filename = "memberlist.txt";
                 FileOutputStream fos = null;
+                Member member = null;
 		try {
                         
-			Member member = (Member)in.readObject();
+			member = (Member)in.readObject();
                        
                          
                         
@@ -86,10 +88,12 @@ class Connection extends Thread {
                        //String data = in.readUTF();
                         // System.out.println(data);
                         //out.writeUTF("Info has been saved");
-                        fos = new FileOutputStream(filename);
-                        out = new ObjectOutputStream(fos); 
-                        out.writeObject(member);  
-                                            
+                        
+                        
+                        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("memberObject"));  
+                        outputStream.writeObject(member);    
+                        
+                        
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		} catch(IOException e) {System.out.println("readline:"+e.getMessage());
 		} catch(ClassNotFoundException ex){
@@ -103,51 +107,59 @@ class Connection extends Thread {
 
 
 class WriteToFile extends TimerTask implements Serializable{
-
+            @Override 
             //this method is called automatically when the task is scheduled
             public void run() {
                 
                
-                Member member = null;
+                //Member member = null;
                 
-                String filename1 = "memberObject";
-                FileInputStream fis = null;
-                ObjectInputStream in = null;
+                //String filename1 = "memberObject";
+               // FileInputStream fis = null;
+                //ObjectInputStream in = null;
                 
-                String filename2= "memberListObject";
-                FileOutputStream fos = null;
-                ObjectOutputStream out = null;
+                //String filename2= "memberListObject";
+                //FileOutputStream fos = null;
+                //ObjectOutputStream out = null;
                 
                
-                 
+                
                 try{
-                  
-                fis = new FileInputStream(filename1);
-                in = new ObjectInputStream(fis);
-                member = (Member)in.readObject();
-                fis.close();
+                
+                
+                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("memberObject"));
+                Member member = (Member) inputStream.readObject();
+                inputStream.close();
                 //int i = member.getMemberN();
                 
                 //[] memberobj = new Array[i]; 
                 //memberobj[i] = member(member.getMemberN(), member.getFirstName(),member.getLastName(),member.getAddress(),member.getPhoneN()); 
                 //member = memberobj[i];       
-                 
-                fos = new FileOutputStream(filename2);
-                out = new ObjectOutputStream(fos);
-                out.writeObject(member);
-                out.close();
+                ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("memberlistobject"));
+                outputStream.writeObject(member);
+                outputStream.close(); 
+                System.out.println("Test");
                 
                 
-                //System.out.println("Test");
+                
              
                 }//end of try block
-                catch(IOException ex) //exception handling for file handling
-                {
-                  ex.printStackTrace();
-                }  catch(ClassNotFoundException ex){
-					 ex.printStackTrace();
-            }
-            
+                 catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+         }
+        }
+   } 
+           class MemberDataFile {
+    int memberN;
+    public void saveMember(Member member) {
+        memberN = member.getMemberN();
+        try (BufferedWriter memberData = new BufferedWriter(new FileWriter("memberList.txt", true))) {
+            memberData.write(member.getMemberN() + " : " + member.getFirstName() +
+                    " : " + member.getLastName() + " : " + member.getAddress() +
+                    " : " + member.getPhoneN() + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
           
 }

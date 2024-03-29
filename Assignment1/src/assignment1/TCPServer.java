@@ -2,8 +2,10 @@ package assignment1;
 
 import java.net.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -59,15 +61,13 @@ class Connection extends Thread {
         
 	public void run(){
                 MemberDataFile memberDataFile = new MemberDataFile();
-                String filename = "memberListObject";
+                String filename = "memberObject";
                 FileOutputStream fos = null;
 		try {
                         
 			Member member = (Member)in.readObject();
                        
-                        fos = new FileOutputStream(filename);
-                        out = new ObjectOutputStream(fos); 
-                           
+                         
                         
                         
 			/*
@@ -86,6 +86,8 @@ class Connection extends Thread {
                        //String data = in.readUTF();
                         // System.out.println(data);
                         //out.writeUTF("Info has been saved");
+                        fos = new FileOutputStream(filename);
+                        out = new ObjectOutputStream(fos); 
                         out.writeObject(member);  
                                             
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
@@ -108,29 +110,35 @@ class WriteToFile extends TimerTask implements Serializable{
                
                 Member member = null;
                 
-                String filename1 = "memberList.txt";
+                String filename1 = "memberObject";
                 FileInputStream fis = null;
                 ObjectInputStream in = null;
                 
-                 String filename2= "memberListObject";
+                String filename2= "memberListObject";
                 FileOutputStream fos = null;
                 ObjectOutputStream out = null;
                 
-                
+               
+                 
                 try{
+                  
                 fis = new FileInputStream(filename1);
-                //in = new ObjectInputStream(fis);
-                member = (Member)fis.readObject();
+                in = new ObjectInputStream(fis);
+                member = (Member)in.readObject();
                 fis.close();
+                //int i = member.getMemberN();
                 
-                
+                //[] memberobj = new Array[i]; 
+                //memberobj[i] = member(member.getMemberN(), member.getFirstName(),member.getLastName(),member.getAddress(),member.getPhoneN()); 
+                //member = memberobj[i];       
+                 
                 fos = new FileOutputStream(filename2);
                 out = new ObjectOutputStream(fos);
                 out.writeObject(member);
                 out.close();
                 
                 
-                System.out.println("Test");
+                //System.out.println("Test");
              
                 }//end of try block
                 catch(IOException ex) //exception handling for file handling
@@ -139,5 +147,7 @@ class WriteToFile extends TimerTask implements Serializable{
                 }  catch(ClassNotFoundException ex){
 					 ex.printStackTrace();
             }
+            
     }
+          
 }

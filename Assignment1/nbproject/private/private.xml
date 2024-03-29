@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/Users/Ellis/OneDrive/Documents/GitHub/Assignment1/Assignment1/src/assignment1/Member.java</file>
             <file>file:/C:/Users/Ellis/OneDrive/Documents/GitHub/Assignment1/Assignment1/src/assignment1/TCPServer.java</file>
+            <file>file:/C:/Users/Ellis/OneDrive/Documents/GitHub/Assignment1/Assignment1/src/assignment1/UDPServer.java</file>
             <file>file:/C:/Users/Ellis/OneDrive/Documents/GitHub/Assignment1/Assignment1/src/assignment1/TCPClient.java</file>
+            <file>file:/C:/Users/Ellis/OneDrive/Documents/GitHub/Assignment1/Assignment1/src/assignment1/UDPClient.java</file>
             <file>file:/C:/Users/Ellis/OneDrive/Documents/GitHub/Assignment1/Assignment1/src/assignment1/MemberTest.java</file>
             <file>file:/C:/Users/Ellis/OneDrive/Documents/GitHub/Assignment1/Assignment1/src/assignment1/MemberDataFile.java</file>
         </group>

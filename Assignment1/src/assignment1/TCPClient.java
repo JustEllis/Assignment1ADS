@@ -38,12 +38,7 @@ public class TCPClient {
                         
                         Member member = new Member(memberN,firstName,lastName,address,phoneN);
                         out.writeObject(member);
-                        //write object ot the server
-			//out.writeObject(memberList.txt);
-                     
-			//read object sent by the server
-			//member = (Member)in.readObject();	      
-                       
+                                                    
 			System.out.println("The Sent Gym Member Data:");
 			System.out.println("====================================");
 			System.out.println("Member number: " + member.getMemberN());
@@ -53,32 +48,18 @@ public class TCPClient {
                         System.out.println("Phone number: " + member.getPhoneN());
 			System.out.println();
                                   
-                        /*	    
-			System.out.println("The Received Gym Member Data");
-			System.out.println("====================================");
-			System.out.println("Member number: " + member1.getMemberN());
-			System.out.println("First name: " + member1.getFirstName());
-			System.out.println("last name: " + member1.getLastName());
-			System.out.println("Address: " + member1.getAddress());	
-                        System.out.println("Phone number: " + member1.getPhoneN());
-			System.out.println();
-                        */
+                        
                         System.out.println("Type 1 to make another entry \nType 2 to stop");
 			answer=sa.nextInt();
-                        //while((answer != 1) || (answer != 2)){
+                        
                         if(answer == 1){
                             loop = true;
                         }else if (answer == 2){
                             loop = false;
-                        }/*else if ((answer != 1) || (answer != 2)){
-                            System.out.println("type 1 or 2");
                         }
-                        }*/
                 }catch (UnknownHostException e){System.out.println("Socket:"+e.getMessage());
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
-		}catch (IOException e){System.out.println("readline:"+e.getMessage());
-                //}catch(ClassNotFoundException ex){
-		//			 ex.printStackTrace();
+		}catch (IOException e){System.out.println("readline:"+e.getMessage());               
 		}finally {if(s!=null) try {s.close();}catch (IOException e){System.out.println("close:"+e.getMessage());}}
                 
             }

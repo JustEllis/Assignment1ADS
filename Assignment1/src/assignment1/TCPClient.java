@@ -60,7 +60,7 @@ public class TCPClient {
                 }catch (UnknownHostException e){System.out.println("Socket:"+e.getMessage());
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		}catch (IOException e){System.out.println("readline:"+e.getMessage());               
-		}finally {if(s!=null) try {s.close();}catch (IOException e){System.out.println("close:"+e.getMessage());}}
+                }finally {if(s!=null) try {s.close();}catch (IOException e){System.out.println("close:"+e.getMessage());}}
                 
             }
         }

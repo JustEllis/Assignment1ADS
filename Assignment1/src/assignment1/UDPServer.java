@@ -10,23 +10,25 @@ import java.io.*;
 public class UDPServer{
     public static void main(String args[]){ 
     	DatagramSocket aSocket = null;
-        String filename = "memberListObject"; 
-        Member member = null;
+        String filename = "memberObject"; 
+        
 	FileInputStream fis = null;
 	ObjectInputStream in = null;   
 	try{
 	    aSocket = new DatagramSocket(2201);
             // create socket at agreed port
-                     
+                 
             fis = new FileInputStream(filename);
             in = new ObjectInputStream(fis);
-            member = (Member)in.readObject();
+            Member member = (Member)in.readObject();
+            
             fis.close();
-            int i = member.getMemberN();
-            String message = new String("\nMember number: " + member.getMemberN() + 
-                "\nFirst name: " + member.getFirstName() + "\nlast name: " + member.getLastName() + 
-                "\nAddress: " + member.getAddress() + "\nPhone number: " + member.getPhoneN() +"\n");
-     
+            String message = member.toString();
+            
+            //member = new Member("\nMember number: " + member.getMemberN() + 
+            //    "\nFirst name: " + member.getFirstName() + "\nlast name: " + member.getLastName() + 
+            //    "\nAddress: " + member.getAddress() + "\nPhone number: " + member.getPhoneN() +"\n");
+
             byte[] buffer = new byte[1000];
             while(true){
  		DatagramPacket request = new DatagramPacket(buffer, buffer.length);
@@ -43,4 +45,3 @@ public class UDPServer{
         }finally {if(aSocket != null) aSocket.close();}
     }
 }
-

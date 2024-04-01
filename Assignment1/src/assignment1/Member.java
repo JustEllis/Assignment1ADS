@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author wiekiang
+ * @author EllisF
  */
 
 public class Member implements Serializable {
@@ -12,7 +12,6 @@ public class Member implements Serializable {
     private String lastName;
     private String address;
     private String phoneN;
-    
 
     // Constructor
     public Member(int memberN, String firstName, String lastName, String address, String phoneN) {
@@ -62,8 +61,6 @@ public class Member implements Serializable {
 
     public void setPhoneN(String phoneN) {
         this.phoneN = phoneN;
-    }
-
-    
+    }   
 }
   

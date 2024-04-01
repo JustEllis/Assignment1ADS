@@ -1,16 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package assignment1;
-
 import java.net.*;
 import java.io.*;
+
+/**
+ *
+ * @author EllisF
+ */
+
 public class UDPServer{
     public static void main(String args[]){ 
     	DatagramSocket aSocket = null;
-        String filename = "memberObject"; 
+        String filename = "memberListObject"; 
         
 	FileInputStream fis = null;
 	ObjectInputStream in = null;   
@@ -20,14 +20,18 @@ public class UDPServer{
                  
             fis = new FileInputStream(filename);
             in = new ObjectInputStream(fis);
-            Member member = (Member)in.readObject();
+            Object member = (Object)in.readObject();
             
             fis.close();
-            String message = member.toString();
+            //String[] message = null;
+            //String info = member.ToString;
             
-            //member = new Member("\nMember number: " + member.getMemberN() + 
-            //    "\nFirst name: " + member.getFirstName() + "\nlast name: " + member.getLastName() + 
-            //    "\nAddress: " + member.getAddress() + "\nPhone number: " + member.getPhoneN() +"\n");
+            String message = new String("|First Name    |Last Name  |Address        |Phone Number       |\n"
+                + "====================================================================\n" + 
+                member);
+            
+            //"|" + member.getFirstName() + " |" + member.getLastName() + 
+            //"   |" + member.getAddress() + "    |" + member.getPhoneN() +"\n");
 
             byte[] buffer = new byte[1000];
             while(true){
